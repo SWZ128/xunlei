@@ -1,9 +1,9 @@
 # Version: 3.21.0
-# host更改端口 4322
+# host更改端口 4321
 # compose.yml
 services:
   xunlei:
-    image: SWZ128/xunlei:latest
+    image: swz128/xunlei:latest
     privileged: true
     container_name: xunlei
     hostname: mynas
