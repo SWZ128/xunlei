@@ -1,8 +1,8 @@
 # 迅雷远程下载服务（Docker）
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/SWZ128/xunlei.svg)](https://hub.docker.com/r/SWZ128/xunlei)
-[![Docker Version](https://img.shields.io/docker/v/SWZ128/xunlei)](https://hub.docker.com/r/SWZ128/xunlei)
-[![GitHub Stars](https://img.shields.io/github/stars/SWZ128/xunlei)](https://star-history.com/#SWZ128/xunlei&Date)
+[![Docker Pulls](https://img.shields.io/docker/pulls/swz128/xunlei.svg)](https://hub.docker.com/r/swz128/xunlei)
+<!-- [![Docker Version](https://img.shields.io/docker/v/swz128/xunlei)](https://hub.docker.com/r/swz128/xunlei) -->
+[![GitHub Stars](https://img.shields.io/github/stars/swz128/xunlei)](https://star-history.com/#swz128/xunlei&Date)
 
 **Fork自 [cnk3x/xunlei](https://github.com/cnk3x/xunlei/tree/docker)，感谢作者**
 
@@ -24,17 +24,17 @@ latest: 3.21.0
 
 ## 安装
 
-[容器镜像: SWZ128/xunlei](https://hub.docker.com/r/SWZ128/xunlei)
+[容器镜像: swz128/xunlei](https://hub.docker.com/r/swz128/xunlei)
 
-阿里云镜像（国内访问）: registry.cn-shenzhen.aliyuncs.com/SWZ128/xunlei:latest
+阿里云镜像（国内访问）: registry.cn-shenzhen.aliyuncs.com/swz128/xunlei:latest
 
-[源码仓库: https://github.com/SWZ128/xunlei/tree/docker](https://github.com/SWZ128/xunlei/tree/docker)
+[源码仓库: https://github.com/swz128/xunlei/tree/docker](https://github.com/swz128/xunlei/tree/docker)
 
 - 环境变量 `XL_WEB_PORT`: 网页访问端口，默认 `2345`。
 - 环境变量 `XL_WEB_ADDRESS` 绑定端口，默认 `:port`
 - 环境变量 `XL_DEBUG`: 1 为调试模式，输出详细的日志信息，0: 关闭，不显示迅雷套件输出的日志，默认0.
-- 环境变量 `UID`, `GID`, 设定运行迅雷下载的用户，使用此参数注意下载目录必须是该账户有可写权限。 <https://github.com/SWZ128/xunlei/issues/85>
-- 环境变量 `XL_BA_USER` 和 `XL_BA_PASSWORD`: 给迅雷面板添加基本验证（明码）。 <https://github.com/SWZ128/xunlei/issues/57>
+- 环境变量 `UID`, `GID`, 设定运行迅雷下载的用户，使用此参数注意下载目录必须是该账户有可写权限。 <https://github.com/swz128/xunlei/issues/85>
+- 环境变量 `XL_BA_USER` 和 `XL_BA_PASSWORD`: 给迅雷面板添加基本验证（明码）。 <https://github.com/swz128/xunlei/issues/57>
 - `host` 网络下载速度比 `bridge` 快, 如果没有条件使用host网络，映射`XL_WEB_PORT`设定的端口`tcp`即可。
 - 下载保存目录 `/xunlei/downloads`, 数据目录：`/xunlei/data`, 请持久化。
 - `hostname`: 迅雷会以主机名来命名远程设备，你在迅雷App上看到的就是这个。
@@ -56,7 +56,7 @@ latest: 3.21.0
 # compose-latest.yml
 services:
   xunlei:
-    image: SWZ128/xunlei:latest
+    image: swz128/xunlei:latest
     privileged: true
     container_name: xunlei
     hostname: mynas
@@ -76,10 +76,10 @@ services:
 # 根据实际情况更改
 # 如果已经安装过的(/mnt/sdb1/xunlei 目录已存在)，再次安装会复用，而且下载目录不可更改，如果要更改下载目录，请把这个目录删掉重新绑定。
 
-# 国内访问将 SWZ128/xunlei:latest 替换为 registry.cn-shenzhen.aliyuncs.com/SWZ128/xunlei:latest
+# 国内访问将 swz128/xunlei:latest 替换为 registry.cn-shenzhen.aliyuncs.com/swz128/xunlei:latest
 
 # host网络，更改端口为 4321
-docker run -d --name=xunlei --hostname=mynas --net=host -e XL_WEB_PORT=4321 -v /mnt/xunlei/data:/xunlei/data -v /mnt/xunlei/downloads:/xunlei/downloads --restart=unless-stopped --privileged SWZ128/xunlei:latest
+docker run -d --name=xunlei --hostname=mynas --net=host -e XL_WEB_PORT=4321 -v /mnt/xunlei/data:/xunlei/data -v /mnt/xunlei/downloads:/xunlei/downloads --restart=unless-stopped --privileged swz128/xunlei:latest
 ```
 
 ## 镜像构建流程
