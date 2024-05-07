@@ -1,0 +1,15 @@
+# host更改端口 4321
+# compose.yml
+services:
+  xunlei:
+    image: cnk3x/xunlei:latest
+    privileged: true
+    container_name: xunlei
+    hostname: mynas
+    network_mode: host
+    environment:
+      - XL_WEB_PORT=4321
+    volumes:
+      - /mnt/xunlei/data:/xunlei/data
+      - /mnt/xunlei/downloads:/xunlei/downloads
+    restart: unless-stopped

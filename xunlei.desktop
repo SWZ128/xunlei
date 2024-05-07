@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=迅雷下载
+Comment=迅雷下载
+Exec=/home/eto/Programs/xunlei/xunlei-start.sh
+Icon=/home/eto/Programs/xunlei/logo.png
+Type=Application
+StartupNotify=true
+Type=Application
+Categories=Application;
+

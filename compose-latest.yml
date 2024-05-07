@@ -1,0 +1,16 @@
+# Version: 3.21.0
+# host更改端口 4322
+# compose.yml
+services:
+  xunlei:
+    image: SWZ128/xunlei:latest
+    privileged: true
+    container_name: xunlei
+    hostname: mynas
+    network_mode: host
+    environment:
+      - XL_WEB_PORT=4321
+    volumes:
+      - /mnt/xunlei/data:/xunlei/data
+      - /mnt/xunlei/downloads:/xunlei/downloads
+    restart: unless-stopped

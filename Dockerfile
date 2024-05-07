@@ -19,8 +19,10 @@ RUN if [ "$(uname -m)" = "aarch64" ]; then arch=armv8; else arch=$(uname -m); fi
 
 WORKDIR /goxlp
 COPY xlp .
-RUN GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 \
-    go build -v -ldflags '-s -w -extldflags "-static"' -tags netgo -o /rootfs/xunlei/xlp ./
+# RUN GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 \
+#    go build -v -ldflags '-s -w -extldflags "-static"' -tags netgo -o /rootfs/xunlei/xlp ./
+# 以上两行报错，需手动编译到本地，再COPY到镜像中
+COPY xlp/xlp /rootfs/xunlei/xlp
 
 RUN cp --parents -r /var/packages/pan-xunlei-com/target /rootfs
 
@@ -29,7 +31,7 @@ LABEL maintainer="七月<wen@k3x.cn>"
 
 ENV LANG=C.UTF-8 DEBIAN_FRONTEND=noninteractive LANG=zh_CN.UTF-8 LANGUAGE=zh_CN.UTF-8 LC_ALL=C
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.bfsu.edu.cn/g' /etc/apt/sources.list \ 
+RUN sed -i 's/archive.ubuntu.com/mirrors.bfsu.edu.cn/g' /etc/apt/sources.list \
     && sed -i 's/security.ubuntu.com/mirrors.bfsu.edu.cn/g' /etc/apt/sources.list \
     && sed -i 's/ports.ubuntu.com/mirrors.bfsu.edu.cn/g' /etc/apt/sources.list \
     && apt-get update && apt-get -y --no-install-recommends install tzdata locales xfonts-wqy wget ca-certificates && rm -rf /var/lib/apt/lists/*
